@@ -40,6 +40,7 @@ No se presentaron dificultades relacionadas con las acciones de clonar el reposi
 
 ## Backlog recovery
 
+Se identificaron XX historias de usuarios asociadas a 5 roles en el sistema. Estas son descritas en el documento <a href="./User Stories Backlog.docx" target="_blank">User Stories Backlog</a>
 
 
 
