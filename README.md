@@ -17,6 +17,10 @@ No se presentaron dificultades relacionadas con las acciones de clonar el reposi
 
 ## AI-Driven discovery
 
+<p align="center">
+  <img src="./Context Map.svg" alt="Context Map" width="800">
+</p>
+
 * **User Management**: Centraliza la identidad, seguridad de acceso y perfiles de los usuarios en la plataforma.
 * **Product Catalog**: Define el catálogo comercial, gestionando la disponibilidad y visibilidad de los productos.
 * **Shopping Cart**: Administra la persistencia temporal y las reglas de negocio de los artículos seleccionados antes de la compra.
@@ -35,6 +39,7 @@ No se presentaron dificultades relacionadas con las acciones de clonar el reposi
 
 
 ## Backlog recovery
+
 
 
 
