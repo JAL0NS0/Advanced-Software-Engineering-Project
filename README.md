@@ -8,12 +8,43 @@ Se realizó un **fork del repositorio a nuestras cuentas de GitHub** para trabaj
 
 ## Onboarding log
 
-No se presentaron dificultades relacionadas con las acciones de clonar el repositorio y levantar el proyecto. Se realizaron las siguientes acciones:
+No se presentaron dificultades significativas relacionadas con las acciones de clonar el repositorio y ejecutar la aplicación. El detalle sobre lo realizado se encuentra a continuación:
 
-1. Se realizó un fork del repositorio seleccionado a nuestras cuentas de GitHub.
-2. Se clonó el repositorio de forma local para ejecutar la aplicación.
-3. Se siguieron las instrucciones indicadas en el archivo `README.md` del proyecto para instalar las dependencias y ejecutar la aplicación, las cuales eran bastante claras.
-4. Se probó la aplicación y no se encontraron inconvenientes.
+### 1. Información General del Proceso
+* **Repositorio / Módulo:** OWASP Juice Shop
+* **Tiempo Total de Setup:** 20 minutos
+
+### 2. Registro de Acciones y Latencia
+| Acción | Resultado | Tiempo (Min) | Observaciones |
+| :--- | :--- | :--- | :--- |
+| **Provisionamiento (Fork/Clone)** | Éxito | **<5 min** | |
+| **Inyección de Dependencias** | **Advertencia** | **~15 min** | 7 vulnerabilidades críticas. Tiempo prolongado para instalación. |
+| **Ejecución del Entorno Local** | Éxito | **<5 min** | |
+
+### 3. Auditoría de Seguridad (Security Scan)
+Resultados de NPM audit
+* **Vulnerabilidades Críticas:** 7
+* **Vulnerabilidades Altas:** 23
+* **Estado de Parches:** Fix disponibles a excepción de 1 vulnerabilidad crítica y 1 alta
+
+### 4. Métricas de Salud del Proyecto (Audit Scores)
+
+* **Autonomía (Self-Service):** [5/5] - *No fue necesaria ayuda de terceros*
+* **Claridad de Documentación:** [5/5] - *El README es preciso y está actualizado*
+* **Eficiencia del Toolchain:** [3/5] - *Tomó demasiado tiempo la instalación de dependencias*
+* **Postura de Seguridad:** [3/5] - *Varias vulnerabilidades altas y críticas*
+* **Consistencia de Dependencias:** [5/5] - *No se presentaron conflictos entre versiones*
+* **Feedback del Sistema:** [5/5] - *Los logs indican que la aplicacióin está corriendo de forma clara*
+
+### 5. Análisis de Brechas (Gap Analysis)
+* **Punto de Fricción Crítico:** El tiempo de descarga e instalación de dependencias es excesivo.
+* **Riesgo Tecnológico:** El uso de paquetes obsoletos con vulnerabilidades críticas representa una brecha de seguridad que debe ser atendida antes de cualquier paso a producción.
+
+### 6. Documentación Técnica Complementaria
+* No se cuenta con diagrama de arquitectura o contexto.
+* No se cuenta con guía de Troubleshooting (FAQ).
+
+---
 
 ## AI-Driven discovery
 
@@ -41,6 +72,7 @@ No se presentaron dificultades relacionadas con las acciones de clonar el reposi
 ## Backlog recovery
 
 Se identificaron XX historias de usuarios asociadas a 5 roles en el sistema. Estas son descritas en el documento <a href="./User Stories Backlog.docx" target="_blank">User Stories Backlog</a>
+
 
 
 
