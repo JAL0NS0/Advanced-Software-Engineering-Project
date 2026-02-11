@@ -71,7 +71,8 @@ Resultados de NPM audit
 
 ## Backlog recovery
 
-Se identificaron XX historias de usuarios asociadas a 5 roles en el sistema. Estas son descritas en el documento <a href="./User Stories Backlog.docx" target="_blank">User Stories Backlog</a>
+Se identificaron 42 historias de usuarios asociadas a 5 roles en el sistema. Estas son descritas en el documento <a href="./User Stories Backlog.pdf" target="_blank">User Stories Backlog</a>
+
 
 
 
