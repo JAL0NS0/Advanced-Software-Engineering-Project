@@ -8,12 +8,13 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 ## 1. Resumen
 * **Riesgo global:** 
 | **Ámbito** | **Calificación** | **Umbral Recomendado** | **Comentario** |
+|------------|------------------|------------------------|----------------|
 | Seguridad | E | A | El análisis encontró 28 vulnerabilidades de impacto crítico y 6 de impacto medio  |
 | Confiabilidad | C | A-B | El análisis encontró 8 bugs de alto impacto, 6 de impacto medio y 16 de bajo impacto. Hay 97 issues de tipo code smell que deben de ser evaluados. |
 | Mantenibilidad | A | A-B | La nota es alta. Al observar los issues encontrados, los críticos corresponden a convenciones de nombres. Este apartado se encuentra saludable. |
 | Code Coverage | XX% | > 70% | |
 | Ciclomatic Complexity | XX | < 10 | |
-| Duplicación | XX% | <5% |  |
+| Duplicación | XX% | <5% | El código cuenta con varias funciones y archivos duplicados. |
 * **Esfuerzo de Remediación Estimado:** 58 horas
 * **Deuda Técnica Identificada:** .
 
@@ -21,7 +22,7 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 *Basado en el análisis automático del pipeline de CI configurado en GitHub Actions.*
 
 | Métrica | Valor Actual |
-| :--- | :--- | :--- |
+|---------|--------------|
 | **Bugs** | 38 |
 | **Vulnerabilidades** | 34 |
 | **Security Hotspots** | 266 |
