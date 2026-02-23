@@ -16,6 +16,7 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 | Code Coverage | XX% | > 70% | - |
 | Ciclomatic Complexity | XX | < 10 | - |
 | Duplicación | XX% | <5% | El código cuenta con varias funciones y archivos duplicados. |
+
 * **Esfuerzo de Remediación Estimado:** 58 horas
 * **Deuda Técnica Identificada:** .
 
