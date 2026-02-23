@@ -13,9 +13,9 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 | Seguridad | E | A | El análisis encontró 28 vulnerabilidades de impacto crítico y 6 de impacto medio. |
 | Confiabilidad | C | A-B | El análisis encontró 8 bugs de alto impacto, 6 de impacto medio y 16 de bajo impacto. Hay 97 issues de tipo code smell que deben de ser evaluados. |
 | Mantenibilidad | A | A-B | La nota es alta. Al observar los issues encontrados, los críticos corresponden a convenciones de nombres. Este apartado se encuentra saludable. |
-| Code Coverage | XX% | > 70% | - |
-| Ciclomatic Complexity | XX | < 10 | - |
-| Duplicación | XX% | <5% | El código cuenta con varias funciones y archivos duplicados. |
+| Code Coverage | 26% | > 70% | - |
+| Ciclomatic Complexity | 150 | < 10 | - |
+| Duplicación | 6% | <5% | El código cuenta con varias funciones y archivos duplicados. |
 
 * **Esfuerzo de Remediación Estimado:** 58 horas
 * **Deuda Técnica Identificada:** .
@@ -28,8 +28,6 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 | **Vulnerabilidades** | 34 |
 | **Security Hotspots** | 266 |
 | **Code Smells** | 656 |
-| **Duplicación de Código** | 6.3% |
-| **Complejidad Ciclomática** | XX |
 
 ## 3. Identificación de Hotspots (Riesgo de Código)
 Para hacer esta evualuación, se consideraron 4 métricas: churn, complejidad, vulnerabilidades y code smells. En las siguientes tablas se detalla cuales eran los archivos con mayor cantidad de valor en cada una de las métricas mencionadas.
@@ -89,21 +87,14 @@ Para hacer esta evualuación, se consideraron 4 métricas: churn, complejidad, v
     * **Motivo:** Es el archivo con más vulnerabilidades (4) y tiene una complejidad considerable (56).
     * **Riesgo:** Aunque su complejidad no sea de las más altas, contiene demasiadas vulnerabilidades, entre las cuales se incluyen key exposed, por lo que es importante atenderlo.
 
-## 4. Auditoría de Seguridad y Supply Chain
-*Análisis de riesgos externos e internos detectados durante el Onboarding.*
-
-* **Hallazgo Crítico:** 7 Vulnerabilidades Críticas detectadas vía `npm audit`.
-* **Análisis de Riesgo:** 
-* **Estado del Quality Gate:** 
-
-## 5. Línea Base de Métricas DORA
-*Indicadores de eficiencia del proceso de entrega de software.*
-
-* **Deployment Frequency:** 
-* **Lead Time for Changes:** 
-* **Change Failure Rate:** 
-
 ---
 
-## 6. Observaciones
-> **Principales insights:** 
+## 6. Conclusión
+Tras el análisis de las métricas obtenidas, se concluye que el proyecto se encuentra en un estado de fragilidad crítica. La combinación de una calificación Seguridad "E" con un Code Coverage insuficiente (26%) crea un escenario donde el sistema no solo es vulnerable, además, no cuenta con las herramientas necesarias para ser corregido sin utilizar regresiones.
+
+### 6.1 Hallazgos Clave:
+* Mantenibilidad: Aunque SonarCloud otorga una calificación "A", el cruce de datos revela una "falsa salud". La cyclomatic complexity alta (160) en módulos core como routes/verify.ts supera con el umbral considerado para una mantenibilidad real, indicando que el costo de introducir nuevas funcionalidades será alto.
+
+* Riesgos combinados: El archivo server.ts esta en riesgo de ser un "God object" debido a que centraliza demasiada responsabilidad, lo que se visualiza en su Churn elevado y una acumulación de code smells. Cualquier fallo en este nodo central compromete la disponibilidad total de la aplicación.
+
+* Deuda técnica: Con un esfuerzo para remediar de 58 horas, la cantidad de trabajo para corregir los puntos más críticos es considerable. La presencia de vulnerabilidades críticas como llaves expuestas y sql injection de varias formas, representa un riesgo de cumplimiento de seguridad que debe priorizarse sobre el desarrollo de nuevos features.
