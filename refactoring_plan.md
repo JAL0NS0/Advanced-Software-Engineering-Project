@@ -8,11 +8,10 @@
 
 La auditoría técnica evidenció un estado de fragilidad crítica del sistema caracterizado por:
 
-- Complejidad Ciclomática máxima: **160**
-- Code Coverage: **26%**
-- 34 vulnerabilidades (28 críticas)
-- 38 bugs
-- 656 code smells
+- Code Coverage: **43%**
+- 34 vulnerabilidades (18 críticas)
+- 6 bugs
+- 454 code smells
 - Churn elevado en módulos core
 
 Los archivos críticos identificados fueron:
@@ -44,7 +43,7 @@ La estrategia evita una reescritura masiva, reduciendo el riesgo de regresiones 
 | Reducir complejidad en `routes/verify.ts` | 160 | < 15 por módulo |
 | Reducir code smells en `server.ts` | 17 | 0 |
 | Eliminar vulnerabilidades en `lib/insecurity.ts` | 4 críticas | 0 |
-| Incrementar Code Coverage | 26% | ≥ 80% en nuevos módulos |
+| Incrementar Code Coverage | 43% | ≥ 80% en nuevos módulos |
 
 ---
 
@@ -67,7 +66,7 @@ La estrategia evita una reescritura masiva, reduciendo el riesgo de regresiones 
 Aislar el módulo `routes/verify.ts` sin modificar directamente su lógica inicial.
 
 #### Acciones
-- Implementar un Router/Proxy interceptor.
+- Implementar un interceptor Router/Proxy.
 - Mantener interfaz pública intacta.
 - Introducir Feature Flags para rollback inmediato.
 
@@ -83,8 +82,8 @@ Construir nuevo módulo desacoplado usando principios de clean arquitecture.
 
 #### Acciones
 - Crear una nueva estructura de servicios utilizando **Clean Architecture**.
-- Reimplementar la lógica de validación de tokens.
-- Añadir pruebas unitarias.
+- Reimplementar la lógica de validación.
+- Añadir pruebas unitarias
 
 #### Resultado esperado
 - Código modular y testeable.
@@ -99,7 +98,7 @@ Completar el proceso de implementación.
 #### Acciones
 - Redirigir 100% del tráfico al nuevo módulo.
 - Monitorear métricas de estabilidad.
-- Eliminar físicamente `routes/verify.ts`
+- Eliminar `routes/verify.ts`
 - Simplificar `server.ts` reduciendo responsabilidades.
 
 #### Resultado esperado
@@ -115,7 +114,6 @@ El archivo `lib/insecurity.ts` será trabajado en paralelo.
 
 - Remover funciones vulnerables.
 - Eliminar exposición de claves.
-- Mitigar SQL injection.
 
 ### Meta:
 
@@ -136,4 +134,4 @@ El archivo `lib/insecurity.ts` será trabajado en paralelo.
 
 ## 8. Conclusión
 
-La implementación del patrón Strangler Fig permite transformar los archivos críticos hacia una arquitectura modular sin comprometer la continuidad operativa.
+La implementación del patrón Strangler Fig permite transformar los archivos críticos hacia una arquitectura modular sin comprometer la continuidad operativa debido a la división del trabajo en fases y la consideración de riesgos para su manejo.
