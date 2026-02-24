@@ -10,24 +10,23 @@ Evaluar el estado de calidad del código mediante métricas de SonarCloud y dete
 
 | **Ámbito** | **Calificación** | **Umbral Recomendado** | **Comentario** |
 |------------|------------------|------------------------|----------------|
-| Seguridad | E | A | El análisis encontró 28 vulnerabilidades de impacto crítico y 6 de impacto medio. |
-| Confiabilidad | C | A-B | El análisis encontró 8 bugs de alto impacto, 6 de impacto medio y 16 de bajo impacto. Hay 97 issues de tipo code smell que deben de ser evaluados. |
+| Seguridad | E | A | El análisis encontró 18 vulnerabilidades de impacto crítico y 4 de impacto medio. |
+| Confiabilidad | C | A-B | El análisis encontró 6 bugs de impacto medio y 16 de bajo impacto. Hay 87 issues de tipo code smell que deben de ser evaluados. |
 | Mantenibilidad | A | A-B | La nota es alta. Al observar los issues encontrados, los críticos corresponden a convenciones de nombres. Este apartado se encuentra saludable. |
-| Code Coverage | 26% | > 70% | - |
-| Ciclomatic Complexity | 150 | < 10 | - |
-| Duplicación | 6% | <5% | El código cuenta con varias funciones y archivos duplicados. |
+| Code Coverage | 43.2% | > 70% | Aún se cuenta con una gran deuda técnica en el código cubierto por pruebas. |
+| Ciclomatic Complexity | ~9 | < 10 | Aunque la complejidad muestra que está en un promedio menor al rango, existen varios archivos que superan los 15 puntos. |
+| Duplicación | 4.7% | <5% | El código cuenta con una considerable cantidad de líneas de código duplicadas. |
 
-* **Esfuerzo de Remediación Estimado:** 58 horas
-* **Deuda Técnica Identificada:** .
+* **Esfuerzo de Remediación Estimado:** 31 horas para seguridad y confiabilidad, 7 días para mantebilidad.
 
 ## 2. Métricas de Gobernanza (Resultados de SonarCloud)
 
 | Métrica | Valor Actual |
 |---------|--------------|
-| **Bugs** | 38 |
-| **Vulnerabilidades** | 34 |
-| **Security Hotspots** | 266 |
-| **Code Smells** | 656 |
+| **Bugs** | 22 |
+| **Vulnerabilidades** | 22 |
+| **Security Hotspots** | 38 |
+| **Code Smells** | 454 |
 
 ## 3. Identificación de Hotspots (Riesgo de Código)
 Para hacer esta evualuación, se consideraron 4 métricas: churn, complejidad, vulnerabilidades y code smells. En las siguientes tablas se detalla cuales eran los archivos con mayor cantidad de valor en cada una de las métricas mencionadas.
@@ -60,21 +59,19 @@ Para hacer esta evualuación, se consideraron 4 métricas: churn, complejidad, v
 | Archivo | Vulnerabilidades Detectadas |
 | :--- | :---: |
 | `lib/insecurity.ts` | 4 |
-| `routes/likeProductReviews.ts` | 4 |
 | `routes/fileUpload.ts` | 3 |
 | `routes/dataErasure.ts` | 2 |
-| `routes/errorHandler.ts` | 2 |
-| `routes/userProfile.ts` | 2 |
 
 ### 3.4 Code smells:
 
 | Archivo | Cantidad de Code Smells |
 | :--- | :---: |
+| `frontend/src/app/mat-search-bar/mat-search-bar.component.ts` | 19 |
 | `server.ts` | 17 |
 | `frontend/src/hacking-instructor/helpers/helpers.ts` | 13 |
 | `routes/userProfile.ts` | 13 |
-| `routes/metrics.ts` | 12 |
-| `routes/order.ts` | 12 |
+| `routes/order.ts` | 11 |
+| `lib/utils.ts` | 11 |
 
 ### 3.5 Módulos Críticos Seleccionados:
 1.  **Archivo:** `routes/verify.ts`
