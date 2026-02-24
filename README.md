@@ -1,3 +1,5 @@
+# Discovery & Reverse Engineering
+
 ## Elección del repositorio
 
 Para este proyecto se seleccionó el repositorio **OWASP Juice Shop (The Chaos E-Commerce – Node.js/Angular)** como aplicación legacy base.
@@ -72,6 +74,19 @@ Resultados de NPM audit
 ## Backlog recovery
 
 Se identificaron 42 historias de usuarios asociadas a 5 roles en el sistema. Estas son descritas en el documento <a href="./User Stories Backlog.pdf" target="_blank">User Stories Backlog</a>
+
+---
+
+# Governance & Technical Debt Audit
+
+Según lo indicado, se realizó la creación de un pipeline para el repositorio del proyecto en el cual se configuró SonarCloud para el análisis del código y obtención de métricas.
+* Las métricas pueden ser visualizadas en el siguiente enlace <a href="https://sonarcloud.io/summary/overall?id=JAL0NS0_juice-shop&branch=master" target="_blank">SonarCloud Metrics</a>
+
+Con base en a los resultados obtenidos, se generaron dos documentos para la auditoría y refactorización:
+* **<a href="./tech_debt_audit.md">Tech Debt Audit</a>:** Contiene el análisis de las métricas obtenidas desde SonarCloud así como la selección de los módulos que serán trabajados inicialmente para la refactorización.
+* **<a href="./refactoring_plan.md">Refactoring Plan</a>:** Describe la estrategía que será utilizada para realizar la refactorización de los archivos seleccionados.
+
+
 
 
 
