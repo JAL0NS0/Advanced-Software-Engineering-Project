@@ -80,7 +80,7 @@ Se identificaron 42 historias de usuarios asociadas a 5 roles en el sistema. Est
 # Governance & Technical Debt Audit
 
 Según lo indicado, se realizó la creación de un pipeline para el repositorio del proyecto en el cual se configuró SonarCloud para el análisis del código y obtención de métricas.
-* Las métricas pueden ser visualizadas en el siguiente enlace <a href="https://sonarcloud.io/summary/overall?id=JAL0NS0_juice-shop&branch=master" target="_blank">SonarCloud Metrics</a>
+* Las métricas pueden ser visualizadas en el siguiente enlace <a href="https://sonarcloud.io/summary/overall?id=dacaslles_juice-shop&branch=master" target="_blank">SonarCloud Metrics</a>
 
 Con base en a los resultados obtenidos, se generaron dos documentos para la auditoría y refactorización:
 * **<a href="./tech_debt_audit.md">Tech Debt Audit</a>:** Contiene el análisis de las métricas obtenidas desde SonarCloud así como la selección de los módulos que serán trabajados inicialmente para la refactorización.
