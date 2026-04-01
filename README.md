@@ -173,3 +173,95 @@ Realizada la actualización de las dependencias a las versiones solicitadas para
 <a href="./critical_resoluction_2.png" target="_blank">Eliminación de vulnerabilidades de vm2</a>
 
 
+---
+
+# Delivery 4 - Architecture Strategy & DevEx
+
+Esta entrega se enfocó en liderazgo técnico, estandarización de decisiones arquitectónicas y mejora de la experiencia de desarrollo (DevEx)
+
+---
+
+## 1. One-Command Setup
+
+Se implementó un flujo de levantamiento del entorno con Docker Compose en dos modos, para cubrir tanto rapidez de evaluación como necesidad de desarrollo local.
+
+### Implementación técnica
+
+Archivos creados/actualizados:
+
+- `docker-compose.yml`
+- `scripts/setup-env.ps1`
+- `package.json` (scripts `env:*`)
+- `README.md` (sección de setup en un comando)
+
+### Modos de ejecución
+
+| Modo | Comando | Puerto | Objetivo |
+|---|---|---|---|
+| Demo (imagen preconstruida) | `npm run env:up:demo` | 3000 | Arranque rápido para revisión/evaluación |
+| Source (imagen local) | `npm run env:up:source` | 3001 | Validar entorno derivado del código del repositorio |
+| Apagado/Limpieza | `npm run env:down` | - | Detener servicios y limpiar recursos |
+
+Alternativa PowerShell (Windows):
+
+- `./scripts/setup-env.ps1 -Mode demo`
+- `./scripts/setup-env.ps1 -Mode source`
+
+### Resultado de DevEx
+
+- Se elimina la secuencia manual de pasos para levantar entorno.
+- Se estandariza el arranque para todo el equipo con comandos reproducibles.
+- Se habilita ejecución orientada a demo rápida y ejecución orientada a validación técnica.
+
+---
+
+## Strategic ADR
+
+### Decisión propuesta
+
+**Adoptar PostgreSQL 16 como base de datos para ambientes de integración y producción**, mediante una estrategia dual por fases. Los puntos clave de la decisión son:
+
+- **Motor objetivo**: PostgreSQL 16, usado de forma consistente en CI, integración y producción.
+- **Gestión de schema**: Se introduce `sequelize-cli` para migraciones incrementales. `sequelize.sync({ force: true })` se mantiene únicamente para `NODE_ENV=test` y `NODE_ENV=development`.
+- **Soporte dual de dialecto**: La configuración de conexión en `models/index.ts` se lee desde variables de entorno, soportando ambos dialectos durante la transición.
+- **Variables de entorno**: `DATABASE_URL` tiene prioridad; como fallback se usan `DB_DIALECT`, `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`.
+- **Non-goals**: MarsDB (`data/mongodb.ts`) queda fuera de alcance; no se cambia el ORM (Sequelize 6); no hay migración de datos históricos.
+
+### Identificación de problemas
+
+- `models/index.ts:30-40` — dialecto `sqlite` y credenciales hardcodeadas identificadas como punto de cambio principal.
+- `server.ts` — uso de `sequelize.sync({ force: true })` identificado como bloqueante para despliegues en producción.
+- `.github/workflows/ci.yml` — pipeline de CI identificado como punto de extensión para job con PostgreSQL 16 service.
+
+---
+
+## Trade-offs, Riesgos y Costos (Resumen Ejecutivo)
+
+### 3.1 Trade-offs
+
+| Opción | Beneficio principal | Costo principal |
+|---|---|---|
+| Mantener SQLite | Simplicidad inmediata, cero costo de infraestructura | Errores `SQLITE_BUSY` en concurrencia; `sync({ force: true })` bloquea producción |
+| Migración total inmediata a PostgreSQL | Estandarización rápida, sin dialecto dual | Riesgo alto de regresiones con 43.2% de cobertura actual; sin rollback |
+| Estrategia dual por fases (seleccionada) | Adopción gradual, rollback posible, introduce migraciones sostenibles | Complejidad temporal de configuración y tests en ambos dialectos |
+
+### Riesgos clave
+
+- **Diferencias de dialecto**: tipos `BOOLEAN`, `DATE`, `TEXT` vs `VARCHAR` pueden causar regresiones — mitigado con tests en ambos dialectos en CI.
+- **Incompatibilidad de queries**: funciones SQLite-específicas no disponibles en PostgreSQL — mitigado con auditoría de modelos previa a migraciones.
+- **Costo de CI**: servicio PostgreSQL 16 en GitHub Actions — sin costo adicional en runners hospedados.
+- **Curva de aprendizaje de `sequelize-cli`**: flujo de migraciones nuevo para el equipo — mitigado con documentación en `CONTRIBUTING.md`.
+
+### Costo estimado
+
+| Actividad | Esfuerzo estimado |
+|---|---|
+| Configuración dual de dialecto y env vars (`models/index.ts`) | 6–10 h |
+| Generación de migraciones con `sequelize-cli` y ajuste de `server.ts` | 12–20 h |
+| Extensión del pipeline CI para PostgreSQL 16 | 6–12 h |
+| Documentación operativa y de desarrollo | 4–8 h |
+| **Total inicial** | **28–50 h de ingeniería** |
+
+Costos operativos recurrentes: instancia PostgreSQL 16 por ambiente, monitoreo, respaldo y mantenimiento de parches.
+
+
