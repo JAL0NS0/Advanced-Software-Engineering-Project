@@ -172,6 +172,28 @@ Realizada la actualización de las dependencias a las versiones solicitadas para
 
 <a href="./critical_resoluction_2.png" target="_blank">Eliminación de vulnerabilidades de vm2</a>
 
+## 3. Secret Protection
+
+Se implementó un método de seguridad en el flujo de trabajo local para prevenir la exposición de credenciales en el repositorio.
+
+### Implementación Técnica
+* **Herramienta de Hooks:** [Husky](https://typicode.github.io/husky/)
+* **Motor de Escaneo:** [Secretlint](https://github.com/secretlint/secretlint)
+* **Configuración:** Se configuró un pre-commit hook que valida todos los archivos con secretlint utilizando la configuración predeterminada que esta herramienta ofrece.
+
+### Flujo de Trabajo
+1. El desarrollador ejecuta `git commit`.
+2. **Husky** dispara el hook de `pre-commit`.
+3. El escáner analiza el contenido en busca de patrones como API Keys.
+4. Si se detecta un riesgo, el commit es **rechazado inmediatamente**, obligando al desarrollador a limpiar el código o usar variables de entorno.
+
+### Evidencia de Bloqueo
+Para validar la efectividad del hook, se realizó una prueba con un secreto ficticio:
+
+* **Acción:** Intento de commit de una clave SRA dummy.
+* **Resultado:** El hook detectó la firma `BEGIN RSA PRIVATE KEY` y bloqueó la operación con un código de error, evitando que el secreto llegara al historial de Git.
+
+<a href="./secretlint_evidence.png" target="_blank">Resultado del commit con secret key</a>
 
 ---
 
