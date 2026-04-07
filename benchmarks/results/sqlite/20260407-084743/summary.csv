@@ -1,0 +1,6 @@
+﻿"engine","endpoint","run","requests_avg","requests_p50","requests_p99","latency_avg_ms","latency_p50_ms","latency_p97_5_ms","latency_p99_ms","throughput_avg_bytes","total_errors","total_timeouts","non_2xx"
+"sqlite","/rest/products/search?q=a,/rest/products/1/reviews,/rest/products","1","62.55","64","71","1548.14","1553","1761","1878","25897.4","0","0","0"
+"sqlite","/rest/products/search?q=a,/rest/products/1/reviews,/rest/products","2","60.5","63","65","1596.07","1583","1834","1972","25050.2","0","0","0"
+"sqlite","/rest/products/search?q=a,/rest/products/1/reviews,/rest/products","3","62.95","64","77","1533.65","1565","1684","1698","26063","0","0","0"
+"sqlite","/rest/products/search?q=a,/rest/products/1/reviews,/rest/products","4","64.5","65","83","1499.71","1512","1791","1864","26704.4","0","0","0"
+"sqlite","/rest/products/search?q=a,/rest/products/1/reviews,/rest/products","5","64.55","67","85","1486.48","1495","1858","1869","26725.8","0","0","0"

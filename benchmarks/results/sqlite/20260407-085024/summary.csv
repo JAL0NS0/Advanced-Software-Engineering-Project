@@ -1,0 +1,6 @@
+﻿"engine","endpoint","run","requests_avg","requests_p50","requests_p99","latency_avg_ms","latency_p50_ms","latency_p97_5_ms","latency_p99_ms","throughput_avg_bytes","total_errors","total_timeouts","non_2xx"
+"sqlite","/rest/products/search?q=a","1","63.95","64","83","1512.71","1541","1850","1855","897395.2","0","0","0"
+"sqlite","/rest/products/search?q=a","2","8.7","0","64","1409.72","1547","1912","1947","122113","100","100","0"
+"sqlite","/rest/products/search?q=a","3","0","0","0","0","0","0","0","0","200","200","0"
+"sqlite","/rest/products/search?q=a","4","0","0","0","0","0","0","0","0","200","200","0"
+"sqlite","/rest/products/search?q=a","5","0","0","0","0","0","0","0","0","5861","100","0"

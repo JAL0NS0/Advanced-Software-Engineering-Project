@@ -1,0 +1,2 @@
+﻿"engine","endpoint","runs","requests_avg_mean","latency_p95_proxy_ms","latency_p99_mean_ms","errors_total","timeouts_total","non_2xx_total"
+"sqlite","/rest/products/1/reviews","5","99.46","950.6","1479.2","36491","114","0"

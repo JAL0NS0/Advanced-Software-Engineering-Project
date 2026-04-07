@@ -1,0 +1,2 @@
+﻿"engine","endpoint","runs","requests_avg_mean","latency_p95_proxy_ms","latency_p99_mean_ms","errors_total","timeouts_total","non_2xx_total"
+"sqlite","/rest/products/search?q=a","5","14.53","752.4","760.4","6361","600","0"
